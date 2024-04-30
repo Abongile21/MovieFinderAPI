@@ -30,3 +30,20 @@ exports.createMovie = async (req, res)=>{
         res.status(500).send({message: "Cant find movies, some error occured", err})
     }
 } 
+
+exports.getOneMovie = async (req, res)=>{
+    try {
+
+        const {id} = req.param
+
+        const movie = await Movie.findOne(id)
+
+        if(!movie){
+           return  res.status(400).send({message: "Failed to find movie"})
+        }
+        console.log(movie)
+        res.status(200).send({message: "Successfully retrieved ", movie})
+    } catch (error) {
+        res.status(500).send({message: "Cant find movie, some error occured", err})
+    }
+} 
