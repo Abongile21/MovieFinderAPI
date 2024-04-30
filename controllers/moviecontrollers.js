@@ -30,3 +30,11 @@ exports.createMovie = async (req, res)=>{
         res.status(500).send({message: "Cant find movies, some error occured", err})
     }
 } 
+exports.deleteAllMovies = async (req, res) => {
+    try {
+        await Movie.deleteMany({});
+        res.status(200).send({ message: "Successfully deleted all movies!" });
+    } catch (error) {
+        res.status(500).send({ message: "Failed to delete movies", error });
+    }
+}
