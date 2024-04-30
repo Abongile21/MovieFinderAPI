@@ -28,7 +28,7 @@ exports.createMovie = async (req, res)=>{
         res.status(200).send({message: "Successfully retrieved all titles!", movie})
     } catch (error) {
         res.status(500).send({message: "Cant find movies, some error occured", err})
-    }
+    }g
 } 
 exports.deleteAllMovies = async (req, res) => {
     try {
