@@ -3,6 +3,9 @@ const app = express();
 const mongoose = require("mongoose")
 const PORT = 4001
 const movieRoutes = require('./routes/movieRoutes')
+const cors = require("cors")
+
+app.use(cors)
 
 app.use(express.json())
 

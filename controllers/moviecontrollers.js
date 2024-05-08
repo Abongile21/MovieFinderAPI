@@ -9,7 +9,7 @@ exports.getAllMovies = async (req, res)=>{
         }
 
         console.log(movies)
-        res.status(200).send({message: "Successfully retrieved all titles!", movies})
+        res.status(200).send({movies})
     } catch (error) {
         res.status(500).send({message: "Cant find movies, some error occured", err})
     }
@@ -47,3 +47,24 @@ exports.getOneMovie = async (req, res)=>{
         res.status(500).send({message: "Cant find movie, some error occured", err})
     }
 } 
+
+exports.deleteAllMovies = async (req, res) => {
+    try {
+        await Movie.deleteMany({}); // Deletes all movies
+
+        res.status(200).send({ message: "Successfully deleted all movies!" });
+    } catch (error) {
+        res.status(500).send({ message: "Error deleting movies", error });
+    }
+}
+exports.createManyMovies = async (req, res) => {
+    const moviesData = req.body.moviesData; // Assuming the request body contains an array of movie data
+
+    try {
+        const createdMovies = await Movie.insertMany(moviesData);
+
+        res.status(200).send({ message: "Successfully created movies!", createdMovies });
+    } catch (error) {
+        res.status(500).send({ message: "Error creating movies", error });
+    }
+}
