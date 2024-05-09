@@ -69,7 +69,7 @@ exports.createManyMovies = async (req, res) => {
     }
 }
 exports.deleteMovieById = async (req, res) => {
-    const movieId = req.params.id; // Assuming the movie ID is passed in the request parameters
+    const {id} = req.param;
 
     try {
         const deletedMovie = await Movie.findByIdAndDelete(movieId); // Delete movie by ID
