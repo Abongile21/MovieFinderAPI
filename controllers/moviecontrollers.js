@@ -68,3 +68,18 @@ exports.createManyMovies = async (req, res) => {
         res.status(500).send({ message: "Error creating movies", error });
     }
 }
+exports.deleteMovieById = async (req, res) => {
+    const movieId = req.params.id; // Assuming the movie ID is passed in the request parameters
+
+    try {
+        const deletedMovie = await Movie.findByIdAndDelete(movieId); // Delete movie by ID
+
+        if (!deletedMovie) {
+            return res.status(404).send({ message: "Movie not found" });
+        }
+
+        res.status(200).send({ message: "Successfully deleted movie", deletedMovie });
+    } catch (error) {
+        res.status(500).send({ message: "Error deleting movie", error });
+    }
+}
