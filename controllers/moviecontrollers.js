@@ -69,10 +69,11 @@ exports.createManyMovies = async (req, res) => {
     }
 }
 exports.deleteMovieById = async (req, res) => {
-    const {id} = req.param;
+    
 
     try {
-        const deletedMovie = await Movie.findByIdAndDelete(movieId); // Delete movie by ID
+        const {id} = req.param;
+        const deletedMovie = await Movie.findByIdAndDelete(id);
 
         if (!deletedMovie) {
             return res.status(404).send({ message: "Movie not found" });
